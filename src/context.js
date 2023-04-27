@@ -71,7 +71,6 @@ export const AppProvider = ({ children }) => {
   };
   const removeTodo = (id) => {
     const newItems = items.filter((item) => item.id !== id);
-    console.log(newItems);
     setActiveItems(newItems);
     setItems(newItems);
     setLocalStorage(newItems);
@@ -115,7 +114,6 @@ export const AppProvider = ({ children }) => {
         const newItem = { ...item, completed: true };
         comp.push(newItem);
         setLocalStorage2(comp);
-
         return newItem;
       }
       return item;
