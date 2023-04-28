@@ -18,7 +18,7 @@ const CompletedBtn = () => {
         {item}
       </p>
       <button
-        id="completedBtn"
+        id="completedBtn" 
         className="todo__completed-list"
         onClick={removeAllCompletedItems}
       >

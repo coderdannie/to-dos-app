@@ -15,12 +15,14 @@
   --btn-clr: var(--neutral-100);
   --text-shadow: #000;
   --toggle-bg: var(--primary-clr-300);
+  --backgroundImg: url('../img/bg-mobile-dark.jpg');
+  --backgroundImgDesktop: url('../img/bg-desktop-dark.jpg');
 }
 button {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.8rem !important;
 }
-/* :has(#light:checked) */
+
 .light {
   --primary-clr-300: hsl(0, 0%, 98%);
   --primary-clr-400: hsl(0, 0%, 100%);
@@ -33,11 +35,12 @@ button {
   --accent-clr-100: hsl(0, 0%, 95%);
   --btn-gradient-clr-1: hsl(265, 77%, 69%);
   --btn-gradient-clr-2: hsl(214, 93%, 72%);
-  --shadow: 2px 2px 10px hsl(0, 3%, 82%);
+  --shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   --btn-clr: var(--primary-clr-400);
-  --text-shadow: var(--shadow);
-  --toggle-bg: hsl(228, 34%, 66%);
+  --toggle-bg: hsl(228deg 97.75% 68.16%);
   --hover-clr: rgba(0, 0, 0, 0.5);
+  --backgroundImg: url('../img/bg-mobile-light.jpg');
+  --backgroundImgDesktop: url('../img/bg-desktop-light.jpg');
 }
 :root:has(#light:checked) {
   --primary-clr-300: hsl(0, 0%, 98%);
@@ -51,10 +54,11 @@ button {
   --accent-clr-100: hsl(0, 0%, 95%);
   --btn-gradient-clr-1: hsl(265, 77%, 69%);
   --btn-gradient-clr-2: hsl(214, 93%, 72%);
-  --shadow: 2px 2px 10px hsl(0, 3%, 82%);
+  --shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   --btn-clr: var(--primary-clr-400);
-  --text-shadow: var(--shadow);
-  --toggle-bg: hsl(228, 34%, 66%);
+  --toggle-bg: hsl(228deg 97.75% 68.16%);
+  --backgroundImg: url('../img/bg-mobile-light.jpg');
+  --backgroundImgDesktop: url('../img/bg-desktop-light.jpg');
 }
 html {
   font-size: 100%;
@@ -128,7 +132,7 @@ h1 {
   font-size: 2rem;
   letter-spacing: 0.3125rem;
   text-shadow: 2px 2px 2px var(--text-shadow);
-  color: var(--neutral-200);
+  color: #fff;
 }
 .main {
   position: relative;
@@ -144,6 +148,10 @@ h1 {
     var(--bg-gradient-clr-2),
     var(--bg-gradient-clr-1)
   );
+  background-image: var(--backgroundImg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-bottom-left-radius: 6.25rem;
   z-index: -1;
 }
@@ -159,6 +167,9 @@ h1 {
   display: flex;
 }
 @media (min-width: 40em) {
+  .main:before {
+    background-image: var(--backgroundImgDesktop);
+  }
   .toggle {
     width: auto;
   }
@@ -179,7 +190,7 @@ h1 {
 }
 .toggle label[for='dark'] {
   margin-right: 0.1875rem;
-  color: var(--neutral-200);
+  color: #fff;
 }
 @media (min-width: 40em) {
   .toggle label[for='dark'] {
