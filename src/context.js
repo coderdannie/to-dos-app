@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
@@ -10,15 +10,7 @@ const day = new Date().toLocaleString('en-US', {
   day: '2-digit',
 });
 const year = new Date().getFullYear();
-// const getLocalStorage = () => {
-//   let list = localStorage.getItem('list');
-//   if (list) {
-//     list - JSON.parse(localStorage.getItem('list'));
-//   } else {
-//     list = [];
-//   }
-//   return list;
-// };
+
 const setLocalStorage = (items) => {
   localStorage.setItem('list', JSON.stringify(items));
 };
@@ -27,6 +19,13 @@ const setLocalStorage2 = (items) => {
 };
 const setLocalStorage3 = (items) => {
   localStorage.setItem('activeLists', JSON.stringify(items));
+};
+const getInitialDarkMode = () => {
+  const prefersDarkMode = window.matchMedia(
+    '(prefers-color-scheme:light)'
+  ).matches;
+  const storedLightMode = localStorage.getItem('light') === 'true';
+  return storedLightMode || prefersDarkMode;
 };
 const defaultList = JSON.parse(localStorage.getItem('list') || '[]');
 const defaultList2 = JSON.parse(localStorage.getItem('lists') || '[]');
@@ -38,6 +37,15 @@ export const AppProvider = ({ children }) => {
   const [currentItems, setCurrentItems] = useState(true);
   const [activeItems, setActiveItems] = useState(defaultList3);
   const [activeItem, setActiveItem] = useState(false);
+  const [isLightTheme, setIsLightTheme] = useState(getInitialDarkMode());
+  const toggleDarkTheme = () => {
+    const newLightTheme = !isLightTheme;
+    setIsLightTheme(newLightTheme);
+    localStorage.setItem('light', newLightTheme);
+  };
+  useEffect(() => {
+    document.documentElement.classList.toggle('light', isLightTheme);
+  }, [isLightTheme]);
   const handleCurrentItems = () => {
     setShowCompleted(false);
     setCurrentItems(true);
@@ -144,6 +152,8 @@ export const AppProvider = ({ children }) => {
         activeItem,
         handleShowActiveItems,
         removeAllCompletedItems,
+        isLightTheme,
+        toggleDarkTheme,
       }}
     >
       {children}

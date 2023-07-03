@@ -11,7 +11,7 @@ import ActiveItems from './ActiveItems';
 const App = () => {
   return (
     <main className="main">
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" autoClose={2000} />
       <div className="wrapper">
         <Header />
         <Form />
