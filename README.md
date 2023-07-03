@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](img/Screen%20Shot%202023-04-24%20at%2004.44.12.png)
-![](img/Screen%20Shot%202023-04-24%20at%2004.44.24.png)
+![](img/1.PNG)
+![](img/2.PNG)
 
 ### Link
 
